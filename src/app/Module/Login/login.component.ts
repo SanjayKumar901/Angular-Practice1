@@ -22,7 +22,7 @@ export class LoginComponent implements OnInit {
 
   checkLogin(form:any){
     if(form.valid){
-    if(this.authService.validateLogin(form)){
+    if(this.authService.validateLogin(form.value)){
       this.router.navigate(['/dashboard']);
     }
     else{
