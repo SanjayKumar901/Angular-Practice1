@@ -5,16 +5,17 @@ import { RouterModule, Routes } from '@angular/router';
 import { HeaderComponent } from '../header/header.component';
 import { FooterComponent } from '../footer/footer.component';
 import { LayoutComponent } from './layout.component';
+import { AuthGuardGuard } from '../../Services/auth-guard.guard';
 
 const routes: Routes = [
   { 
     path: '',
-    component: LayoutComponent , 
+    component: LayoutComponent ,
     children:[
-    { path:'dashboard' , loadChildren : '../dashboard/dashboard.module#DashboardModule'},
-    { path:'employee' , loadChildren : '../employee/employee.module#EmployeeModule'},
-    { path:'department' , loadChildren : '../department/department.module#DepartmentModule'},
-    { path:'user' , loadChildren : '../user/user.module#UserModule'}
+    { path:'dashboard' , loadChildren : '../dashboard/dashboard.module#DashboardModule', canActivate:[AuthGuardGuard]},
+    { path:'employee' , loadChildren : '../employee/employee.module#EmployeeModule', canActivate:[AuthGuardGuard]},
+    { path:'department' , loadChildren : '../department/department.module#DepartmentModule', canActivate:[AuthGuardGuard]},
+    { path:'user' , loadChildren : '../user/user.module#UserModule', canActivate:[AuthGuardGuard]}
   ]
 }
 ];
